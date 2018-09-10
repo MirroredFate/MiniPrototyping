@@ -5,20 +5,22 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour {
 
     public Transform target;
+    
 
     [SerializeField] float heightOffset = 5f;
     [SerializeField] float cameraDistance = 3f;
+    [SerializeField] float lerpSpeed = 0.5f;
 
     Vector3 cameraPosition;
 
-	// Use this for initialization
-	void Start () {
-        cameraPosition = new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance);
-        transform.position = cameraPosition;
+
+    // Use this for initialization
+    void Start () {
+        transform.position = new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        transform.position = cameraPosition;
+	void FixedUpdate () {
+        transform.position = Vector3.Lerp(transform.position,new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance), lerpSpeed);
 	}
 }
