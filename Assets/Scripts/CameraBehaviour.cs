@@ -9,7 +9,7 @@ public class CameraBehaviour : MonoBehaviour {
 
     [SerializeField] float heightOffset = 5f;
     [SerializeField] float cameraDistance = 3f;
-    [SerializeField] float lerpSpeed = 0.5f;
+    [SerializeField][Range(0.1f, 2f)] float lerpSpeed = 0.5f;
 
     Vector3 cameraPosition;
 
