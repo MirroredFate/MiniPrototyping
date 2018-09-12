@@ -8,19 +8,48 @@ public class CameraBehaviour : MonoBehaviour {
     
 
     [SerializeField] float heightOffset = 5f;
-    [SerializeField] float cameraDistance = 3f;
-    [SerializeField][Range(0.1f, 2f)] float lerpSpeed = 0.5f;
+    [SerializeField] float cameraSpeed = 5f;
+    float cameraDistance;
+    //[SerializeField][Range(0.1f, 2f)] float lerpSpeed = 0.5f;
 
     Vector3 cameraPosition;
+    Vector3 offset;
+    Vector3 playerPrevPos, playerMoveDir;
 
-
-    // Use this for initialization
     void Start () {
-        transform.position = new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance);
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        transform.position = Vector3.Lerp(transform.position,new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance), lerpSpeed);
-	}
+        //transform.position = new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance);
+        offset = transform.position - target.transform.position;
+
+        cameraDistance = offset.magnitude;
+        playerPrevPos = target.transform.position;
+
+    }
+
+    private void Update()
+    {
+        transform.RotateAround(target.position, new Vector3(0, 1, 0), Input.GetAxis("HorizontalCamera") * Time.deltaTime * cameraSpeed);
+    }
+
+
+    void FixedUpdate () {
+        //transform.position = Vector3.Lerp(transform.position,new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance), lerpSpeed);
+      
+    }
+
+
+    void LateUpdate()
+    {
+        playerMoveDir = target.transform.position - playerPrevPos;
+        if (playerMoveDir != Vector3.zero)
+        {
+            playerMoveDir.Normalize();
+            transform.position = target.transform.position - playerMoveDir * cameraDistance;
+
+            transform.position += new Vector3(0,heightOffset,0); // required height
+
+            transform.LookAt(target.transform.position);
+
+            playerPrevPos = target.transform.position;
+        }
+    }
 }
