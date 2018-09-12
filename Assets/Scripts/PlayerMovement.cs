@@ -10,12 +10,18 @@ public class PlayerMovement : MonoBehaviour {
     float movementZ;
 
     Rigidbody rb;
+    
+    // TODO Cloud ParticleSystem relative to movement
+    ParticleSystem pS;
+    ParticleSystem.EmissionModule pSE;
+    ParticleSystem.Burst burst;
 
-
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
+        pS = GetComponentInChildren<ParticleSystem>();
+        pSE = pS.emission;
+        
 	}
 	
 	// Update is called once per frame
@@ -50,5 +56,6 @@ public class PlayerMovement : MonoBehaviour {
             isMoving = true;
         }
 
+       
 	}
 }
