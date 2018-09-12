@@ -166,6 +166,11 @@ Prefab:
       propertyPath: m_Name
       value: Cludd
       objectReference: {fileID: 0}
+    - target: {fileID: 114248851354294572, guid: d0fd4564509e96f47a99a52e6311a8c1,
+        type: 2}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0fd4564509e96f47a99a52e6311a8c1, type: 2}
   m_IsPrefabParent: 0
@@ -292,8 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1514152153}
   heightOffset: 30
-  cameraDistance: 30
-  lerpSpeed: 0.5
+  cameraSpeed: 5
 --- !u!4 &476604791 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4974783398974320, guid: b6650dfd95971744bad616aa2e4eef2e,
