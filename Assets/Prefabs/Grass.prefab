@@ -58,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b96bba3ce96524245afb034cdc2d1571, type: 2}
+  - {fileID: 2100000, guid: 3f416e6fa22920947a2fc71398d93fd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,3 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 23694831249381344}
+  Color1: {r: 0.49056602, g: 0.33896905, b: 0, a: 0}
+  Color2: {r: 0, g: 1, b: 0.06773448, a: 0}
+  speed: 1
+  offset: 2
