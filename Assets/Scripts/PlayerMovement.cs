@@ -6,12 +6,14 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool isMoving = false;
     public float speed = 5f;
+    public float idleSpeed;
+    //public float rotateSpeed = 5f;
     //public float speedMeUp = 4f;
     //float movementX;
     //float movementZ;
     Vector2 input;
 
-    //Rigidbody rb;
+    Rigidbody rb;
     
     // TODO Cloud ParticleSystem relative to movement
     ParticleSystem pS;
@@ -20,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         pS = GetComponentInChildren<ParticleSystem>();
         pSE = pS.emission;
         
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
         //movementZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
         //rb.velocity = new Vector3(movementX, rb.velocity.y, movementZ);
+
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         input = Vector2.ClampMagnitude(input, 1);
 
@@ -43,12 +46,15 @@ public class PlayerMovement : MonoBehaviour {
         camF = camF.normalized;
         camR = camR.normalized;
 
-        transform.position += (camF*input.y + camR*input.x) * Time.deltaTime * speed;
-
-        if (isMoving)
+        if(isMoving)
         {
+            transform.position += (camF * input.y + camR * input.x) * Time.deltaTime * speed;
+
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
         }
+       
+
+
 
         //if(Input.GetKey(KeyCode.LeftArrow))
         //{
