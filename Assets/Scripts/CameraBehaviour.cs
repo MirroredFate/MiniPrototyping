@@ -5,16 +5,13 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour {
 
     public Transform target;
-    [Range(0.1f,1f)]public float camDistance;
+    
 
     [SerializeField] float heightOffset = 5f;
     [SerializeField] float cameraSpeed = 5f;
-
-
     float cameraDistance;
     //[SerializeField][Range(0.1f, 2f)] float lerpSpeed = 0.5f;
 
-    PlayerMovement pm;
     Vector3 cameraPosition;
     Vector3 offset;
     Vector3 playerPrevPos, playerMoveDir;
@@ -22,7 +19,7 @@ public class CameraBehaviour : MonoBehaviour {
     void Start () {
         //transform.position = new Vector3(target.position.x, target.position.y + heightOffset, target.position.z - cameraDistance);
         offset = transform.position - target.transform.position;
-        pm = target.gameObject.GetComponent<PlayerMovement>();
+
         cameraDistance = offset.magnitude;
         playerPrevPos = target.transform.position;
 
@@ -31,7 +28,6 @@ public class CameraBehaviour : MonoBehaviour {
     private void Update()
     {
         transform.RotateAround(target.position, new Vector3(0, 1, 0), Input.GetAxis("HorizontalCamera") * Time.deltaTime * cameraSpeed);
-
     }
 
 
@@ -43,22 +39,17 @@ public class CameraBehaviour : MonoBehaviour {
 
     void LateUpdate()
     {
-        if (pm.isMoving)
+        playerMoveDir = target.transform.position - playerPrevPos;
+        if (playerMoveDir != Vector3.zero)
         {
-            playerMoveDir = target.transform.position - playerPrevPos;
-            if (playerMoveDir != Vector3.zero)
-            {
-                playerMoveDir.Normalize();
-                Vector3 targetPosition = target.transform.position - playerMoveDir * (cameraDistance * camDistance);
-                transform.position = targetPosition; //camera moves behind player
+            playerMoveDir.Normalize();
+            transform.position = target.transform.position - playerMoveDir * cameraDistance;
 
-                transform.position += new Vector3(0, heightOffset, 0); // required height
+            transform.position += new Vector3(0,heightOffset,0); // required height
 
-                transform.LookAt(target.transform.position); // camera looks at player
+            transform.LookAt(target.transform.position);
 
-                playerPrevPos = target.transform.position;
-            }
+            playerPrevPos = target.transform.position;
         }
-        
     }
 }
