@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour {
 
     public Transform target;
-    
+
+    PlayerMovement player;
 
     [SerializeField] float heightOffset = 5f;
     [SerializeField] float cameraSpeed = 5f;
@@ -22,7 +23,7 @@ public class CameraBehaviour : MonoBehaviour {
 
         cameraDistance = offset.magnitude;
         playerPrevPos = target.transform.position;
-
+        player = target.gameObject.GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -39,6 +40,7 @@ public class CameraBehaviour : MonoBehaviour {
 
     void LateUpdate()
     {
+        if(!player.IsMoving) { return; }
         playerMoveDir = target.transform.position - playerPrevPos;
         if (playerMoveDir != Vector3.zero)
         {

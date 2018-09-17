@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public bool IsMoving 
+    {
+        get
+        {
+            return isMoving;
+        }
+    }
+
     public bool isMoving = false;
     public float speed = 5f;
     [Range(0.01f, 1f)]public float rotationMultiplier;
@@ -91,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
         //    transform.eulerAngles = new Vector3(0, 45, 0);
         //}
 
-        if (Input.GetAxis("Horizontal") != 0 || (Input.GetAxis("Vertical") != 0))
+        if ((Input.GetAxis("Vertical") != 0))
         {
             isMoving = true;
         }
