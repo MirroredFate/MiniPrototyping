@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool isMoving = false;
     public float speed = 5f;
-    [Range(0.01f, 1f)]public float rotationMultiplier;
+
     //public float speedMeUp = 4f;
     //float movementX;
     //float movementZ;
@@ -37,11 +37,18 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //movementX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        //movementZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
-        //rb.velocity = new Vector3(movementX, rb.velocity.y, movementZ);
-        input = new Vector2(Input.GetAxis("Horizontal") * rotationMultiplier, Input.GetAxis("Vertical"));
+
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         input = Vector2.ClampMagnitude(input, 1);
 
         Vector3 camF = Camera.main.transform.forward;
@@ -52,61 +59,10 @@ public class PlayerMovement : MonoBehaviour {
         camF = camF.normalized;
         camR = camR.normalized;
 
-        transform.position += (camF*input.y + camR*input.x) * Time.deltaTime * speed;
+        transform.position += (camF*input.y) * Time.deltaTime * speed;
 
-        if (isMoving)
-        {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
-        }
 
-        //if(Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    transform.eulerAngles = new Vector3(0, -90, 0);
-        //}
-
-        //if(Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 90, 0);
-        //}
-
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 0, 0);
-        //}
-
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 180, 0);
-        //}
-
-        //if ((Input.GetKey(KeyCode.DownArrow) && (Input.GetKey(KeyCode.LeftArrow))))
-        //{
-        //     transform.eulerAngles = new Vector3(0, 225, 0);
-        //}
-
-        //if ((Input.GetKey(KeyCode.DownArrow) && (Input.GetKey(KeyCode.RightArrow))))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 135, 0);
-        //}
-
-        //if ((Input.GetKey(KeyCode.UpArrow) && (Input.GetKey(KeyCode.LeftArrow))))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 325, 0);
-        //}
-
-        //if ((Input.GetKey(KeyCode.UpArrow) && (Input.GetKey(KeyCode.RightArrow))))
-        //{
-        //    transform.eulerAngles = new Vector3(0, 45, 0);
-        //}
-
-        if ((Input.GetAxis("Vertical") != 0))
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
 
 
     }
