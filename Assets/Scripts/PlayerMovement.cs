@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool isMoving = false;
     public float speed = 5f;
+    [Range(0.01f, 1f)]public float rotationMultiplier;
     //public float speedMeUp = 4f;
     //float movementX;
     //float movementZ;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
         //movementZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
         //rb.velocity = new Vector3(movementX, rb.velocity.y, movementZ);
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        input = new Vector2(Input.GetAxis("Horizontal") * rotationMultiplier, Input.GetAxis("Vertical"));
         input = Vector2.ClampMagnitude(input, 1);
 
         Vector3 camF = Camera.main.transform.forward;

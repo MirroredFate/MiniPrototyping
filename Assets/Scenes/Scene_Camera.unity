@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   speed: 15
+  rotationMultiplier: 0.029
 --- !u!1001 &1307009521
 Prefab:
   m_ObjectHideFlags: 0
