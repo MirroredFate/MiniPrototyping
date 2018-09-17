@@ -7,7 +7,7 @@ public class ParticleCollision : MonoBehaviour {
     ParticleSystem pS;
     GameManager gM;
   
-    List<ParticleCollisionEvent> collEvents;
+    public List<ParticleCollisionEvent> collEvents;
 
     private void Awake()
     {

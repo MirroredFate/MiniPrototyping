@@ -33,8 +33,5 @@ public class GameManager : MonoBehaviour {
         return grass;
     } 
 
-    private void Update()
-    {
-      
-    }
+
 }
