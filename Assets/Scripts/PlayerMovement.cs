@@ -21,24 +21,27 @@ public class PlayerMovement : MonoBehaviour {
     Vector2 input;
 
     //Rigidbody rb;
-    
-    // TODO Cloud ParticleSystem relative to movement
-    ParticleSystem pS;
-    ParticleSystem.EmissionModule pSE;
-    ParticleSystem.Burst burst;
+
+    Animator anim;
+
 
     // Use this for initialization
     void Start () {
-        //rb = GetComponent<Rigidbody>();
-        pS = GetComponentInChildren<ParticleSystem>();
-        pSE = pS.emission;
+        anim = GetComponent<Animator>();
+    }
+    
+    // Update is called once per frame
+    void Update () {
+
+        if (isMoving)
+        {
+            anim.SetBool("IsMoving", true);
+        } else
+        {
+            anim.SetBool("IsMoving", false);
+        }
+
         
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-
         if (Input.GetAxis("Vertical") != 0)
         {
             isMoving = true;

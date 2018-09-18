@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
    public Stack<GameObject> grassStack;
     [SerializeField]GameObject grass;
    public Transform tP;
-    int grassStackCount = 500;
+    int grassStackCount = 2000;
 
     private void Awake()
     {
