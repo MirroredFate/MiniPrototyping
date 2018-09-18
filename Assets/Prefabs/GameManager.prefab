@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e253d714e0678d248a9104cc7a42c64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grass: {fileID: 1004336795315390, guid: 0d951ef4b9a5edd4eb5f80d2361bb822, type: 2}
   tP: {fileID: 0}
+  grass: {fileID: 1004336795315390, guid: 0d951ef4b9a5edd4eb5f80d2361bb822, type: 2}
+  grassStackCount: 5000

@@ -14,7 +14,7 @@ public class ParticleCollision : MonoBehaviour {
         pS = GetComponent<ParticleSystem>();
         gM = FindObjectOfType<GameManager>();
 
-        collEvents = new List<ParticleCollisionEvent>();
+        collEvents = new List<ParticleCollisionEvent>(); 
     }
 
     private void OnParticleCollision(GameObject other)
@@ -23,7 +23,6 @@ public class ParticleCollision : MonoBehaviour {
 
         if (other.gameObject.tag != "Gras")
         {
-            Debug.Log(other.gameObject.tag);
             for (int b = 0; b < numCollEvents; b++)
             {
                 Vector3 pos = collEvents[b].intersection;

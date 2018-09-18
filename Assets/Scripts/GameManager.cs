@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-
-   public Stack<GameObject> grassStack;
+    #region Fields
+    public Stack<GameObject> grassStack;
+    [SerializeField] Transform tP;
     [SerializeField]GameObject grass;
-   public Transform tP;
-    int grassStackCount = 2000;
+    [SerializeField] int grassStackCount = 2000;
+    #endregion
 
     private void Awake()
     {
@@ -26,11 +27,19 @@ public class GameManager : MonoBehaviour {
 
     public GameObject GetGrassQuad(Vector3 pos, Quaternion quat)
     {
+        if(grassStack.Count > 0)
+        {
         GameObject grass = grassStack.Pop();
         grass.SetActive(true);
         grass.transform.position = pos;
         grass.transform.rotation = quat;
         return grass;
+
+        }
+        else
+        {
+            return null;
+        }
     } 
 
 
