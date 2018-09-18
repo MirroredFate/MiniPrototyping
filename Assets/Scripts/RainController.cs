@@ -13,8 +13,6 @@ public class RainController : MonoBehaviour {
         pS = GetComponentInChildren<ParticleSystem>();
         pS.Pause();
         pSE = pS.emission;
-
-        
         
     }
 

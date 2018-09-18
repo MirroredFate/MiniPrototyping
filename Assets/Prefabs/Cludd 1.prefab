@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
-  speed: 1000
+  speed: 15
 --- !u!114 &114400861965409814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3429c3a59eaa78b4bbc55aa999a32f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grass: {fileID: 1160997608805304, guid: 4ea283ed73ef0ef46adac81c5a0e3be5, type: 2}
 --- !u!114 &114798374435175536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8463,7 +8462,7 @@ ParticleSystem:
     radiusScale: 1
   SubModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     subEmitters:
     - serializedVersion: 2
       emitter: {fileID: 0}
